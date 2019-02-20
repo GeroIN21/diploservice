@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://producer.x-road.eu"
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:tns="http://producer.x-road.eu"
+        xmlns:xrd="http://x-road.eu/xsd/xroad.xsd"
+        xmlns:ref="http://ws-i.org/profiles/basic/1.1/xsd"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://producer.x-road.eu"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://x-road.eu/xsd/xroad.xsd"
+                    schemaLocation="http://x-road.eu/xsd/xroad.xsd" />
+            <xs:import namespace="http://ws-i.org/profiles/basic/1.1/xsd"
+                    schemaLocation="http://ws-i.org/profiles/basic/1.1/swaref.xsd" />
+            <xs:complexType name="fault">
+                <xs:sequence>
+                    <xs:element name="faultCode" type="xs:string">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <xrd:title>Fault Code</xrd:title>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="faultString" type="xs:string">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <xrd:title>Fault explanation</xrd:title>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="diploInfoService">
+                <xs:complexType>
+                    <xs:sequence>
+
+                        <xs:element name="StudName" type="xs:string">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xrd:title>Student Name</xrd:title>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="Serie" type="xs:string">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xrd:title>diplo Serial Number</xrd:title>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="EndingYear" type="xs:integer">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xrd:title>Ending Year</xrd:title>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="diploInfoServiceResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        
+                        <xs:element name="Serie" type="xs:string">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xrd:title>diplo Serial Number</xrd:title>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="StudName" type="xs:string">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xrd:title>Student Name</xrd:title>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="Specialty" type="xs:string">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xrd:title>Specialty</xrd:title>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="Institution" type="xs:string">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xrd:title>Institution</xrd:title>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="EndingYear" type="xs:integer">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xrd:title>Ending Year</xrd:title>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="fault" type="tns:fault"
+                                minOccurs="0" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="diploInfoService">
+        <wsdl:part name="diploInfoService" element="tns:diploInfoService" />
+    </wsdl:message>
+    <wsdl:message name="diploInfoServiceResponse">
+        <wsdl:part name="diploInfoServiceResponse"
+                element="tns:diploInfoServiceResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="requestHeader">
+        <wsdl:part name="client" element="xrd:client" />
+        <wsdl:part name="service" element="xrd:service" />
+        <wsdl:part name="id" element="xrd:id" />
+        <wsdl:part name="userId" element="xrd:userId" />
+        <wsdl:part name="issue" element="xrd:issue" />
+        <wsdl:part name="protocolVersion" element="xrd:protocolVersion" />
+    </wsdl:message>
+
+    <wsdl:portType name="exampleServicePort">
+        <wsdl:operation name="diploInfoService">
+            <wsdl:documentation>
+                <xrd:title>Title of diploInfoService</xrd:title>
+                <xrd:notes>Technical notes for diploInfoService:
+                        This is a simple SOAP service.</xrd:notes>
+            </wsdl:documentation>
+            <wsdl:input name="diploInfoService" message="tns:diploInfoService" />
+            <wsdl:output name="diploInfoServiceResponse"
+                    message="tns:diploInfoServiceResponse" />
+        </wsdl:operation>        
+    </wsdl:portType>
+
+    <wsdl:binding name="exampleServicePortSoap11" type="tns:exampleServicePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="diploInfoService">
+            <soap:operation soapAction="diploInfoService" style="document" />
+            <xrd:version>v1</xrd:version>
+            <wsdl:input name="diploInfoService">
+                <soap:body use="literal" />
+                <soap:header message="tns:requestHeader"
+                        part="client" use="literal" />
+                <soap:header message="tns:requestHeader"
+                        part="service" use="literal" />
+                <soap:header message="tns:requestHeader"
+                        part="id" use="literal" />
+                <soap:header message="tns:requestHeader"
+                        part="userId" use="literal" />
+                <soap:header message="tns:requestHeader"
+                        part="issue" use="literal" />
+                <soap:header message="tns:requestHeader"
+                        part="protocolVersion" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="diploInfoServiceResponse">
+                <soap:body use="literal" />
+                <soap:header message="tns:requestHeader"
+                        part="client" use="literal" />
+                <soap:header message="tns:requestHeader"
+                        part="service" use="literal" />
+                <soap:header message="tns:requestHeader"
+                        part="id" use="literal" />
+                <soap:header message="tns:requestHeader"
+                        part="userId" use="literal" />
+                <soap:header message="tns:requestHeader"
+                        part="issue" use="literal" />
+                <soap:header message="tns:requestHeader"
+                        part="protocolVersion" use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="producerPortService">
+        <wsdl:port name="exampleServicePortSoap11"
+                binding="tns:exampleServicePortSoap11">
+            <soap:address location="http://localhost:3000/diploservice/" />
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

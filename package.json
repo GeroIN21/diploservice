@@ -1,0 +1,25 @@
+{
+  "name": "diploservice",
+  "version": "0.1.4",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "body-parser-xml": "^1.1.0",
+    "cookie-parser": "^1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "morgan": "~1.9.0",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.5",
+    "node-soap": "^1.0.0",
+    "sequelize": "^4.42.0",
+    "soap": "^0.26.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
