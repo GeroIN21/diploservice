@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions targetNamespace="http://producer.x-road.eu"
         xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:id="http://x-road.eu/xsd/identifiers"
         xmlns:tns="http://producer.x-road.eu"
         xmlns:xrd="http://x-road.eu/xsd/xroad.xsd"
         xmlns:ref="http://ws-i.org/profiles/basic/1.1/xsd"

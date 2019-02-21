@@ -36,13 +36,35 @@ server.on('listening', onListening);
 /** 
  * Listen soap.
 */
-try {
+try {  
   let soapSrv = soap.listen(server, '/diploservice', srv.service, srv.wsdl);
-  let methodName = 'diploInfoService';  
-  soapSrv.addSoapHeader((methodName, args, headers, req) => {
-    return headers;
+  let options = new Object({
+    rootName: { name: 'diploInfoService' },
+    namespace: {  }
   });
-  
+
+  soapSrv.addSoapHeader((options, args, headers, req) => {
+    // console.log('Request: ', req);
+    let h = headers;
+    return `<xrd:client id:objectType="SUBSYSTEM">
+                <id:xRoadInstance>${h.client.xRoadInstance}</id:xRoadInstance>
+                <id:memberClass>${h.client.memberClass}</id:memberClass>
+                <id:memberCode>${h.client.memberCode}</id:memberCode>
+                <id:subsystemCode>${h.client.subsystemCode}</id:subsystemCode>
+            </xrd:client>
+            <xrd:service id:objectType="SERVICE">
+                <id:xRoadInstance>${h.service.xRoadInstance}</id:xRoadInstance>
+                <id:memberClass>${h.service.memberClass}</id:memberClass>
+                <id:memberCode>${h.service.memberCode}</id:memberCode>
+                <id:subsystemCode>${h.service.subsystemCode}</id:subsystemCode>
+                <id:serviceCode>${h.service.serviceCode}</id:serviceCode>
+                <id:serviceVersion>${h.service.serviceVersion}</id:serviceVersion>
+            </xrd:service>
+            <xrd:id>${h.id}</xrd:id>
+            <xrd:userId>${h.userId}</xrd:userId>
+            <xrd:issue>${h.issue}</xrd:issue>
+            <xrd:protocolVersion>${h.protocolVersion}</xrd:protocolVersion>`;
+  });
 } catch (error) {
   console.log('Soap error: ', error);  
 }

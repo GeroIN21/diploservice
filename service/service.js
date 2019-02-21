@@ -14,9 +14,8 @@ const service = {
 
         //console.log('\nIncoming args:', args);
         //console.log('\nIncoming headers:', headers);
-
+        
         (async () => {
-          //console.log('Async method run!');
 
           try {
             const diplomasInfo = await studentdiplomas.findOne({
@@ -28,8 +27,6 @@ const service = {
                 },        
               },
             })
-                   
-            //console.log('\nDiplomas Info: ', diplomasInfo);
 
             if (diplomasInfo) {
               callback({
@@ -47,7 +44,7 @@ const service = {
             }
 
           } catch (error) {
-            console.error('DB error: ', error);            
+            console.error('Error: ', error);
           } 
 
         }) ();
