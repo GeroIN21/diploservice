@@ -24,7 +24,13 @@ const service = {
                 EndingYear: args.EndingYear,
                 StudName: { 
                   [Op.like]: args.StudName + '%'
-                },        
+                },
+                Institution: {
+                  [Op.like]: args.Institution + '%'
+                },
+                Specialty: {
+                  [Op.like]: args.Specialty + '%'
+                }
               },
             })
 
