@@ -60,6 +60,22 @@
                                 </xs:appinfo>
                             </xs:annotation>
                         </xs:element>
+                            
+                        <xs:element name="Specialty" type="xs:string">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xrd:title>Specialty</xrd:title>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+
+                        <xs:element name="Institution" type="xs:string">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <xrd:title>Institution</xrd:title>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
 
                     </xs:sequence>
                 </xs:complexType>
